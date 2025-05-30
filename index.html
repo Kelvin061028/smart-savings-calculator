@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Savings Calculator - Free Compound Interest Calculator</title>
+    <meta name="description" content="Calculate your savings growth with our free compound interest calculator. Plan your financial future with interactive charts and goal tracking.">
+    <meta name="keywords" content="savings calculator, compound interest calculator, investment calculator, financial planning, retirement calculator">
+    <meta name="author" content="Smart Savings Calculator">
+    
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Smart Savings Calculator - Plan Your Financial Future">
+    <meta property="og:description" content="Free online savings calculator with compound interest, goal tracking, and beautiful charts.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google AdSense - Replace with YOUR publisher ID -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX"
+            crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-piggy-bank"></i>
+                <h1>Smart Savings</h1>
+            </div>
+            <div class="header-subtitle">
+                Calculate your financial future with precision
+            </div>
+        </header>
+
+        <!-- Top Ad Banner -->
+        <div class="ad-banner">
+            <!-- Google AdSense Banner Ad -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Main Calculator -->
+        <div class="calculator-container">
+            <div class="input-section">
+                <h2>Savings Goals Calculator</h2>
+                
+                <!-- Input Cards -->
+                <div class="input-grid">
+                    <div class="input-card">
+                        <div class="input-header">
+                            <i class="fas fa-dollar-sign"></i>
+                            <label for="initialAmount">Initial Amount</label>
+                        </div>
+                        <input type="number" id="initialAmount" placeholder="1000" value="1000">
+                        <span class="input-helper">Starting balance</span>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="input-header">
+                            <i class="fas fa-plus"></i>
+                            <label for="monthlyContribution">Monthly Savings</label>
+                        </div>
+                        <input type="number" id="monthlyContribution" placeholder="500" value="500">
+                        <span class="input-helper">Regular contribution</span>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="input-header">
+                            <i class="fas fa-percentage"></i>
+                            <label for="interestRate">Annual Interest Rate</label>
+                        </div>
+                        <input type="number" id="interestRate" placeholder="5" value="5" step="0.1">
+                        <span class="input-helper">Expected return (%)</span>
+                    </div>
+
+                    <div class="input-card">
+                        <div class="input-header">
+                            <i class="fas fa-calendar"></i>
+                            <label for="timeframe">Time Period (Years)</label>
+                        </div>
+                        <input type="number" id="timeframe" placeholder="10" value="10">
+                        <span class="input-helper">Investment duration</span>
+                    </div>
+                </div>
+
+                <!-- Goal Setting -->
+                <div class="goal-section">
+                    <h3>Set Your Goal</h3>
+                    <div class="goal-input">
+                        <i class="fas fa-target"></i>
+                        <input type="number" id="goalAmount" placeholder="100000" value="100000">
+                        <span>Target Amount</span>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <button class="calculate-btn" onclick="calculateSavings()">
+                    <i class="fas fa-calculator"></i>
+                    Calculate My Savings
+                </button>
+
+                <!-- Email Capture for Lead Generation -->
+                <div class="email-capture">
+                    <h4>💰 Get Free Financial Tips!</h4>
+                    <p>Subscribe for exclusive savings strategies and investment tips</p>
+                    <div class="email-form">
+                        <input type="email" id="userEmail" placeholder="Enter your email">
+                        <button onclick="subscribeUser()">Subscribe Free</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <h2>Your Financial Projection</h2>
+                
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card primary">
+                        <div class="metric-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Final Amount</span>
+                            <span class="metric-value" id="finalAmount">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Total Contributed</span>
+                            <span class="metric-value" id="totalContributed">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Interest Earned</span>
+                            <span class="metric-value" id="interestEarned">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="metric-content">
+                            <span class="metric-label">Goal Progress</span>
+                            <span class="metric-value" id="goalProgress">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Goal Achievement</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <!-- Affiliate Marketing Section -->
+                <div class="affiliate-section">
+                    <h3>🚀 Ready to Start Investing?</h3>
+                    <div class="affiliate-grid">
+                        <a href="#" class="affiliate-card" data-affiliate="investment-app">
+                            <div class="affiliate-icon">💰</div>
+                            <div class="affiliate-content">
+                                <h4>Open Investment Account</h4>
+                                <p>Start investing with as little as $1</p>
+                                <span class="affiliate-cta">Get Started →</span>
+                            </div>
+                        </a>
+                        <a href="#" class="affiliate-card" data-affiliate="high-yield-savings">
+                            <div class="affiliate-icon">🏦</div>
+                            <div class="affiliate-content">
+                                <h4>High-Yield Savings</h4>
+                                <p>Earn 4.5% APY on your savings</p>
+                                <span class="affiliate-cta">Learn More →</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Side Ad -->
+                <div class="ad-sidebar">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+                         data-ad-slot="XXXXXXXXXX"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+
+                <!-- Breakdown Chart -->
+                <div class="breakdown-section">
+                    <h3>Savings Breakdown</h3>
+                    <div class="breakdown-chart">
+                        <div class="chart-segment initial" id="initialSegment">
+                            <span class="segment-label">Initial</span>
+                        </div>
+                        <div class="chart-segment contributions" id="contributionsSegment">
+                            <span class="segment-label">Contributions</span>
+                        </div>
+                        <div class="chart-segment interest" id="interestSegment">
+                            <span class="segment-label">Interest</span>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color initial"></div>
+                            <span>Initial Amount</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color contributions"></div>
+                            <span>Monthly Contributions</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color interest"></div>
+                            <span>Compound Interest</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="timeline-section">
+                    <h3>Year-by-Year Growth</h3>
+                    <div class="timeline" id="timeline">
+                        <!-- Timeline items will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Ad -->
+        <div class="ad-banner">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
